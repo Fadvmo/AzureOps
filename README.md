@@ -33,6 +33,7 @@ AzureOps combines Infrastructure as Code (IaC), Python-based security auditing, 
 | Linux (Ubuntu) | Development and automation environment |
 
 ## Cloud Architecture
+<img width="1930" height="1392" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/abe84511-9a98-454c-8e32-62a8aef84edc" />
 
 The environment includes:
 
