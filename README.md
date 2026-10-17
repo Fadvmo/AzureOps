@@ -202,7 +202,90 @@ Reviewed Checkov findings and implemented seven-day blob soft-delete retention a
 ### Continuous Integration
 
 Integrated GitHub Actions to automatically validate Terraform configuration and run infrastructure security scans.
+## Getting Started
 
+### Prerequisites
+
+- Microsoft Azure subscription
+- Azure CLI
+- Terraform
+- Python 3.10 or newer
+- Git
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Fadvmo/AzureOps.git
+cd AzureOps
+```
+
+### 2. Authenticate to Azure
+
+```bash
+az login --use-device-code
+```
+
+### 3. Deploy the Infrastructure
+
+```bash
+cd infrastructure/terraform
+terraform init
+terraform fmt -check
+terraform validate
+export TF_VAR_subscription_id="$(az account show --query id -o tsv)"
+terraform plan
+terraform apply
+```
+
+Review the Terraform execution plan before approving deployment.
+
+### 4. Run the Security Auditor
+
+Return to the project directory:
+
+```bash
+cd ../../security-auditor
+```
+
+Activate the project's Python virtual environment and install the Azure SDK dependencies required by `auditor.py`.
+
+Set the Azure subscription environment variable:
+
+```bash
+export AZURE_SUBSCRIPTION_ID="$(az account show --query id -o tsv)"
+```
+
+Run the assessment:
+
+```bash
+python auditor.py
+```
+
+Generate the HTML report:
+
+```bash
+python generate_report.py
+```
+
+The assessment outputs are written to the local `reports/` directory.
+
+### 5. Validate the Infrastructure
+
+From the Terraform directory:
+
+```bash
+terraform plan
+```
+
+A plan showing no changes confirms that Terraform detects no differences between the deployed resources and the current configuration.
+
+### Security and Cost Considerations
+
+This project deploys real Azure resources and may incur charges depending on the subscription and usage.
+
+Do not commit credentials, Terraform state files, or sensitive assessment data to the repository.
+
+Infrastructure should be reviewed and removed when no longer required.
 ## Future Enhancements
 
 - Introduce Azure Bicep templates for alternative infrastructure provisioning.
