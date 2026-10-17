@@ -1,0 +1,30 @@
+# Terraform local files
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+
+# Generated reports
+security-auditor/reports/
+
+# Editor and system files
+.vscode/
+.idea/
+.DS_Store
