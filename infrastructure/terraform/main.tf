@@ -76,4 +76,10 @@ resource "azurerm_storage_account" "azureops" {
   shared_access_key_enabled       = false
 
   tags = local.tags
+
+  blob_properties {
+    delete_retention_policy {
+      days = 7
+    }
+  }
 }
